@@ -1,5 +1,22 @@
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const html = document.documentElement;
+const mobileQuery = window.matchMedia("(max-width: 860px)");
+const coarsePointerQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+
+function isPhoneDevice() {
+  const ua = navigator.userAgent || navigator.vendor || "";
+  const hasMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+  const narrowViewport = Math.min(window.innerWidth, window.innerHeight) <= 900;
+  return hasMobileUA || (coarsePointerQuery.matches && narrowViewport) || mobileQuery.matches;
+}
+
+function isMobileOptimizedMode() {
+  return html.classList.contains("mobile-optimized");
+}
+
+function applyDeviceOptimizationMode() {
+  html.classList.toggle("mobile-optimized", isPhoneDevice());
+}
 
 // THEME
 function getThemeIcon(theme) {
@@ -51,7 +68,7 @@ function initThemeToggle() {
     html.classList.add("theme-transitioning");
     applyTheme(nextTheme);
 
-    if (window.gsap) {
+    if (window.gsap && !isMobileOptimizedMode()) {
       gsap.fromTo(icon, { rotation: 0 }, { rotation: 360, duration: 0.5, ease: "power2.inOut" });
     }
 
@@ -66,7 +83,7 @@ function initLoader() {
   const loader = document.querySelector("[data-loader]");
   if (!loader) return;
 
-  if (!window.gsap || prefersReducedMotion) {
+  if (!window.gsap || prefersReducedMotion || isMobileOptimizedMode()) {
     loader.remove();
     return;
   }
@@ -111,6 +128,8 @@ function initHeader() {
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
   window.addEventListener("resize", updateHeader);
+  mobileQuery.addEventListener?.("change", applyDeviceOptimizationMode);
+  coarsePointerQuery.addEventListener?.("change", applyDeviceOptimizationMode);
 }
 
 // CURSOR
@@ -207,6 +226,8 @@ function initMobileMenu() {
 
 // NAV HEADER
 function initNavHeader() {
+  if (isMobileOptimizedMode()) return;
+
   const nav = document.querySelector("[data-nav-header]");
   const cursor = document.querySelector("[data-nav-cursor]");
   const items = document.querySelectorAll(".nav-header__item");
@@ -243,6 +264,13 @@ function initPaperShaderBackground() {
   const root = document.querySelector("[data-paper-shader]");
   if (!root) return;
 
+  if (isMobileOptimizedMode()) {
+    root.style.setProperty("--shader-x", "50%");
+    root.style.setProperty("--shader-y", "30%");
+    root.style.setProperty("--shader-time", "0.35");
+    return;
+  }
+
   const orbs = root.querySelectorAll(".paper-shader-bg__orb");
   const pointer = { x: window.innerWidth * 0.5, y: window.innerHeight * 0.3 };
   const smooth = { x: pointer.x, y: pointer.y };
@@ -276,7 +304,7 @@ function initPaperShaderBackground() {
 
 // HERO TILT
 function initTiltCards() {
-  if (prefersReducedMotion) return;
+  if (prefersReducedMotion || isMobileOptimizedMode()) return;
 
   document.querySelectorAll("[data-tilt-card]").forEach((card) => {
     const onMove = (event) => {
@@ -338,7 +366,15 @@ function initSpotlightCards() {
 
     card.style.setProperty("--base", String(palette.base));
     card.style.setProperty("--spread", String(palette.spread));
+    if (isMobileOptimizedMode()) {
+      card.style.setProperty("--x", String(window.innerWidth * 0.5));
+      card.style.setProperty("--y", String(window.innerHeight * 0.3));
+      card.style.setProperty("--xp", "0.5");
+      card.style.setProperty("--yp", "0.3");
+    }
   });
+
+  if (isMobileOptimizedMode()) return;
 
   const syncPointer = (event) => {
     const x = event.clientX;
@@ -359,7 +395,7 @@ function initSpotlightCards() {
 
 // PARALLAX
 function initAdvancedParallax() {
-  if (prefersReducedMotion) return;
+  if (prefersReducedMotion || isMobileOptimizedMode()) return;
 
   const layers = [...document.querySelectorAll("[data-parallax-layer]")];
   if (!layers.length) return;
@@ -458,7 +494,7 @@ function initCounters() {
   const counters = document.querySelectorAll("[data-counter]");
   if (!counters.length) return;
 
-  if (!window.gsap || !window.ScrollTrigger || prefersReducedMotion) {
+  if (!window.gsap || !window.ScrollTrigger || prefersReducedMotion || isMobileOptimizedMode()) {
     counters.forEach((counter) => {
       const suffix = counter.dataset.suffix || "";
       counter.textContent = `${counter.dataset.target}${suffix}`;
@@ -498,7 +534,7 @@ function initFooterMotion() {
   const card = document.querySelector("[data-footer-card]");
   const links = document.querySelectorAll("[data-footer-links] .footer-block, [data-footer-bottom]");
 
-  if (!footer || !card || !window.gsap || !window.ScrollTrigger || prefersReducedMotion) return;
+  if (!footer || !card || !window.gsap || !window.ScrollTrigger || prefersReducedMotion || isMobileOptimizedMode()) return;
 
   gsap.fromTo(
     card,
@@ -554,7 +590,7 @@ function initAnimations() {
     return;
   }
 
-  if (prefersReducedMotion) {
+  if (prefersReducedMotion || isMobileOptimizedMode()) {
     showStaticState();
     return;
   }
@@ -679,6 +715,7 @@ function initAnimations() {
 
 // APP
 function initApp() {
+  applyDeviceOptimizationMode();
   splitWords("hero");
   initLoader();
   initThemeToggle();
