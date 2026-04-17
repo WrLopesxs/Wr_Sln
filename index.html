@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WR Solution | Sistemas inteligentes que transformam empresas</title>
+  <meta
+    name="description"
+    content="A WR Solution desenvolve sistemas internos, dashboards inteligentes, automações e soluções corporativas sob medida para empresas que precisam de clareza, controle e velocidade."
+  />
+  <link rel="icon" type="image/jpeg" href="https://wrlopesxs.github.io/Wr_Sl/imgs/logo_resized.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="paper-shader-bg" aria-hidden="true" data-paper-shader>
+    <div class="paper-shader-bg__mesh"></div>
+    <div class="paper-shader-bg__orb paper-shader-bg__orb--blue"></div>
+    <div class="paper-shader-bg__orb paper-shader-bg__orb--violet"></div>
+    <div class="paper-shader-bg__orb paper-shader-bg__orb--aqua"></div>
+    <div class="paper-shader-bg__grid"></div>
+  </div>
+
+  <div class="loading-screen" aria-hidden="true" data-loader>
+    <div class="loading-screen__inner">
+      <span class="loading-screen__brand">WR Solution</span>
+      <span class="loading-screen__line"></span>
+    </div>
+  </div>
+
+  <div class="reading-progress" aria-hidden="true">
+    <span class="reading-progress__bar" data-progress></span>
+  </div>
+
+  <div class="cursor-shell" aria-hidden="true">
+    <span class="cursor-shell__outer" data-cursor-outer></span>
+    <span class="cursor-shell__inner" data-cursor-inner></span>
+  </div>
+
+  <header class="site-header" data-header>
+    <div class="container">
+      <nav class="site-nav" aria-label="Principal">
+        <a class="brand" href="#inicio" aria-label="WR Solution">
+          <span class="brand__mark">WR</span>
+          <span class="brand__text">Solution</span>
+        </a>
+
+        <ul class="site-nav__links nav-header" data-nav-header>
+          <li class="nav-header__cursor" aria-hidden="true" data-nav-cursor></li>
+          <li class="nav-header__item">
+            <a href="#inicio" data-nav-link>Home</a>
+          </li>
+          <li class="nav-header__item">
+            <a href="#projetos" data-nav-link>Projetos</a>
+          </li>
+          <li class="nav-header__item">
+            <a href="#sobre" data-nav-link>Sobre</a>
+          </li>
+          <li class="nav-header__item">
+            <a href="#tecnologias" data-nav-link>Tecnologias</a>
+          </li>
+          <li class="nav-header__item">
+            <a href="#contato" data-nav-link>Contato</a>
+          </li>
+        </ul>
+
+        <div class="site-nav__actions">
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Alternar tema"
+            aria-pressed="false"
+            data-theme-toggle
+          >
+            <span class="theme-toggle__icon" data-theme-icon aria-hidden="true"></span>
+          </button>
+          <a class="btn btn--primary" href="#contato">Falar comigo</a>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-label="Abrir menu"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            data-menu-toggle
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" data-mobile-menu>
+    <div class="mobile-menu__panel">
+      <div class="mobile-menu__top">
+        <span class="brand"><span class="brand__mark">WR</span><span class="brand__text">Solution</span></span>
+        <button class="menu-close" type="button" aria-label="Fechar menu" data-menu-close>
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 6 18 18M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="mobile-menu__links">
+        <a href="#sobre">Sobre</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#tecnologias">Tecnologias</a>
+        <a href="#diferenciais">Diferenciais</a>
+        <a href="#contato">Contato</a>
+      </div>
+
+      <a
+        class="btn btn--primary btn--block"
+        href="https://wa.me/5515992587986?text=Olá,%20tenho%20interesse%20nos%20sistemas%20da%20WR%20Solution%20e%20gostaria%20de%20mais%20informações."
+        target="_blank"
+        rel="noreferrer"
+      >
+        Falar no WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero__aurora" aria-hidden="true" data-parallax-layer data-depth="0.08"></div>
+      <div class="hero__gridlines" aria-hidden="true" data-parallax-layer data-depth="0.04"></div>
+      <div class="container hero__grid">
+        <div class="hero__content">
+          <div class="hero__eyebrow-row">
+            <span class="eyebrow">Sistemas B2B sob medida</span>
+            <span class="trust-pill">Projetos reais em operação</span>
+          </div>
+
+          <h1 class="hero__title" data-split="hero">Sistemas inteligentes que transformam empresas.</h1>
+          <p class="hero__subtitle">
+            A WR Solution projeta sistemas internos, dashboards inteligentes, automações e integrações
+            corporativas com uma linguagem visual premium e foco absoluto em impacto operacional.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projetos">Ver projetos</a>
+            <a
+              class="btn btn--secondary"
+              href="https://wa.me/5515992587986?text=Olá,%20tenho%20interesse%20nos%20sistemas%20da%20WR%20Solution%20e%20gostaria%20de%20mais%20informações."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Falar comigo
+            </a>
+          </div>
+
+          <div class="hero__proof">
+            <span>Toyota do Brasil</span>
+            <span>CRM Imobiliário</span>
+            <span>Dashboards em tempo real</span>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card spotlight-card" data-counter-card>
+              <strong data-counter data-target="3">0</strong>
+              <span>sistemas entregues</span>
+            </article>
+            <article class="stat-card spotlight-card" data-counter-card>
+              <strong data-counter data-target="2">0</strong>
+              <span>clientes corporativos</span>
+            </article>
+            <article class="stat-card spotlight-card" data-counter-card>
+              <strong data-counter data-target="100" data-suffix="%">0%</strong>
+              <span>projetos sob medida</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero__visual" data-tilt-card>
+          <div class="hero-orbit hero-orbit--one" aria-hidden="true" data-parallax-layer data-depth="0.12"></div>
+          <div class="hero-orbit hero-orbit--two" aria-hidden="true" data-parallax-layer data-depth="0.16"></div>
+
+          <article class="hero-dash hero-dash--main spotlight-card" data-parallax-layer data-depth="0.18">
+            <div class="hero-dash__topbar">
+              <span></span><span></span><span></span>
+            </div>
+            <img
+              src="https://wrlopesxs.github.io/Wr_Sl/imgs/img1.png"
+              alt="Dashboard operacional desenvolvido pela WR Solution"
+              data-lightbox
+            />
+          </article>
+
+          <article class="hero-dash hero-dash--side spotlight-card" data-parallax-layer data-depth="0.24">
+            <span class="section-label">Stack aplicada</span>
+            <div class="hero-metric-list">
+              <div><span>Apps Script</span><strong>Automação</strong></div>
+              <div><span>Google Sheets</span><strong>Dados vivos</strong></div>
+              <div><span>Chart.js</span><strong>Leitura clara</strong></div>
+            </div>
+          </article>
+
+          <article class="hero-dash hero-dash--floating spotlight-card" data-parallax-layer data-depth="0.2">
+            <span class="section-label">Camada executiva</span>
+            <strong>Visualização premium para operação, gestão e decisão.</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="sobre">
+      <div class="container">
+        <div class="section-divider reveal-divider" aria-hidden="true"></div>
+        <div class="section-head reveal">
+          <span class="eyebrow">Sobre a WR</span>
+          <h2>Tecnologia corporativa com presença visual de produto global.</h2>
+          <p>
+            A WR Solution nasce para construir sistemas que não parecem ferramentas improvisadas.
+            Cada entrega une clareza visual, performance, profundidade técnica e desenho sob medida
+            para empresas que tratam operação como prioridade estratégica.
+          </p>
+        </div>
+
+        <div class="feature-grid" data-stagger-group>
+          <article class="feature-card spotlight-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M5 7h14M5 12h14M5 17h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </div>
+            <span class="feature-card__index">01</span>
+            <h3>Sistemas internos</h3>
+            <p>Ferramentas feitas para organizar fluxos reais, centralizar ações e eliminar fricção operacional.</p>
+          </article>
+
+          <article class="feature-card spotlight-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 18V9m5 9V6m5 12v-5m5 5V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+              </svg>
+            </div>
+            <span class="feature-card__index">02</span>
+            <h3>Dashboards inteligentes</h3>
+            <p>Painéis com leitura imediata, hierarquia forte e visualização viva para gestão em tempo real.</p>
+          </article>
+
+          <article class="feature-card spotlight-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 4v16M4 12h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                <path d="M7 7h10v10H7z" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </div>
+            <span class="feature-card__index">03</span>
+            <h3>Automação de processos</h3>
+            <p>Rotinas automáticas que reduzem retrabalho e devolvem foco para atividades de maior valor.</p>
+          </article>
+
+          <article class="feature-card spotlight-card">
+            <div class="feature-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 8 12 4l8 4-8 4-8-4Zm0 8 8 4 8-4M4 12l8 4 8-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+            <span class="feature-card__index">04</span>
+            <h3>Integrações e APIs</h3>
+            <p>Conexões fluidas entre serviços, dados e áreas da empresa para uma operação mais inteligente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section-shell--accent" id="projetos">
+      <div class="container">
+        <div class="section-divider reveal-divider" aria-hidden="true"></div>
+        <div class="section-head reveal">
+          <span class="eyebrow">Projetos / Cases</span>
+          <h2>Projetos apresentados como produtos premium, não como telas isoladas.</h2>
+          <p>
+            Cada case abaixo foi concebido para provar domínio técnico, clareza de raciocínio e
+            capacidade de transformar dados, processos e equipes em uma experiência sólida de software.
+          </p>
+        </div>
+
+        <div class="case-layout case-layout--featured">
+          <div class="case-copy">
+            <article class="case-panel reveal spotlight-card">
+              <span class="case-panel__kicker">Toyota do Brasil</span>
+              <h3>Dashboard operacional para previsão de estoque, curva de consumo e monitoramento de defeitos.</h3>
+              <p>
+                Projeto real para ambiente corporativo com dados em tempo real via Google Sheets,
+                estrutura escura premium e foco em leitura executiva para acompanhamento tático da operação.
+              </p>
+              <div class="case-bullets">
+                <div class="case-bullets__item">
+                  <span>01</span>
+                  <p>Visão consolidada de indicadores operacionais com hierarquia visual forte.</p>
+                </div>
+                <div class="case-bullets__item">
+                  <span>02</span>
+                  <p>Leitura de curva de consumo e previsão de estoque para planejamento mais preciso.</p>
+                </div>
+                <div class="case-bullets__item">
+                  <span>03</span>
+                  <p>Monitoramento de defeitos via Pareto para ação rápida e priorização inteligente.</p>
+                </div>
+              </div>
+            </article>
+
+            <div class="tag-row reveal">
+              <span class="tag">Implementado na Toyota</span>
+              <span class="tag">Dados em tempo real</span>
+              <span class="tag">Dashboard operacional</span>
+            </div>
+            </div>
+          </div>
+
+          <div class="case-media reveal-media-right">
+            <img
+              class="case-img-main"
+              src="https://wrlopesxs.github.io/Wr_Sl/imgs/img1.png"
+              alt="Dashboard Toyota principal"
+              data-lightbox
+            />
+            <div class="case-img-grid">
+              <img src="https://wrlopesxs.github.io/Wr_Sl/imgs/img4.png" alt="Painel de previsão Toyota" data-lightbox />
+              <img src="https://wrlopesxs.github.io/Wr_Sl/imgs/img2.png" alt="Monitoramento de defeitos Toyota" data-lightbox />
+            </div>
+          </div>
+        </div>
+
+        <div class="project-showcase" data-stagger-group>
+          <article class="project-card spotlight-card" data-tilt-card>
+            <div class="project-card__media">
+              <img src="https://wrlopesxs.github.io/Wr_Sl/imgs/img1.png" alt="Sistema de estoque com visual premium" data-lightbox />
+            </div>
+            <div class="project-card__body">
+              <span class="project-card__eyebrow">Sistema de Reparo</span>
+              <h3>Leitura estratégica de contro de reparo com visão clara do fluxo operacional.</h3>
+              <p>Construído para reduzir ruído e ampliar previsibilidade em contextos industriais de alta exigência.</p>
+              <div class="tag-row">
+                <span class="tag">Google Sheets</span>
+                <span class="tag">Chart.js</span>
+                <span class="tag">Operação crítica</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card spotlight-card" data-tilt-card>
+            <div class="project-card__media">
+              <img src="imgs/image.png" alt="CRM imobiliário com funil visual" data-lightbox />
+            </div>
+            <div class="project-card__body">
+              <span class="project-card__eyebrow">CRM Imobiliário</span>
+              <h3>Gestão de leads, funil visual e dashboard executivo em uma operação centralizada.</h3>
+              <p>Um CRM desenhado para acelerar decisões comerciais e entregar uma experiência mais refinada ao time.</p>
+              <div class="tag-row">
+                <span class="tag">Apps Script</span>
+                <span class="tag">jsPDF</span>
+                <span class="tag">Multi-perfil</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card spotlight-card" data-tilt-card>
+            <div class="project-card__media">
+              <img src="https://wrlopesxs.github.io/Wr_Sl/imgs/3.jpg" alt="Dashboard executivo personalizado" data-lightbox />
+            </div>
+            <div class="project-card__body">
+              <span class="project-card__eyebrow">Soluções Personalizadas</span>
+              <h3>Interfaces corporativas desenhadas para processos, times e métricas específicas.</h3>
+              <p>Projetos que não seguem fórmula pronta, mas refletem a lógica do negócio com precisão visual.</p>
+              <div class="tag-row">
+                <span class="tag">UX sob medida</span>
+                <span class="tag">Automação</span>
+                <span class="tag">APIs</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="tecnologias">
+      <div class="container">
+        <div class="section-divider reveal-divider" aria-hidden="true"></div>
+        <div class="section-head reveal">
+          <span class="eyebrow">Tecnologias</span>
+          <h2>Stack leve, modular e poderosa para construir software com presença visual e profundidade técnica.</h2>
+          <p>
+            A tecnologia da WR Solution é escolhida para unir velocidade, clareza, controle e evolução contínua.
+          </p>
+        </div>
+
+        <div class="tech-stage">
+          <div class="tech-marquee reveal" data-tech-marquee>
+            <div class="tech-marquee__track">
+            <span class="tech-pill" tabindex="0">HTML5</span>
+            <span class="tech-pill" tabindex="0">CSS3</span>
+            <span class="tech-pill" tabindex="0">JavaScript</span>
+            <span class="tech-pill" tabindex="0">Google Sheets</span>
+            <span class="tech-pill" tabindex="0">Google Apps Script</span>
+            <span class="tech-pill" tabindex="0">Chart.js</span>
+            <span class="tech-pill" tabindex="0">html2canvas</span>
+            <span class="tech-pill" tabindex="0">jsPDF</span>
+            <span class="tech-pill" tabindex="0">Integração com APIs</span>
+            </div>
+            <div class="tech-marquee__track" aria-hidden="true">
+              <span class="tech-pill">HTML5</span>
+              <span class="tech-pill">CSS3</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">Google Sheets</span>
+              <span class="tech-pill">Google Apps Script</span>
+              <span class="tech-pill">Chart.js</span>
+              <span class="tech-pill">html2canvas</span>
+              <span class="tech-pill">jsPDF</span>
+              <span class="tech-pill">IntegraÃ§Ã£o com APIs</span>
+            </div>
+          </div>
+          <article class="tech-panel reveal spotlight-card">
+            <span class="section-label">Arquitetura de entrega</span>
+            <h3>Da planilha à camada de decisão.</h3>
+            <p>
+              A proposta não é apenas montar telas bonitas, mas transformar fontes de dados dispersas em
+              um sistema legível, confiável e visualmente sofisticado.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="diferenciais">
+      <div class="container">
+        <div class="section-divider reveal-divider" aria-hidden="true"></div>
+        <div class="section-head reveal">
+          <span class="eyebrow">Diferenciais</span>
+          <h2>O que faz a WR Solution parecer uma parceira de alto nível desde o primeiro contato.</h2>
+          <p>
+            Não é apenas sobre desenvolver telas. É sobre construir autoridade, clareza operacional
+            e experiências que fazem a empresa parecer mais sofisticada por dentro e por fora.
+          </p>
+        </div>
+
+        <div class="difference-grid" data-stagger-group>
+          <article class="difference-card spotlight-card">
+            <span class="difference-card__number">A</span>
+            <h3>Projetos reais em produção</h3>
+            <p>Cases com uso corporativo real, incluindo Toyota do Brasil e operação imobiliária completa.</p>
+          </article>
+
+          <article class="difference-card spotlight-card">
+            <span class="difference-card__number">B</span>
+            <h3>Design com linguagem de produto</h3>
+            <p>Interfaces que parecem software internacional, com hierarquia visual, profundidade e sofisticação.</p>
+          </article>
+
+          <article class="difference-card spotlight-card">
+            <span class="difference-card__number">C</span>
+            <h3>Entrega sob medida</h3>
+            <p>Cada sistema nasce com regras, estrutura e visual desenhados para a operação específica do cliente.</p>
+          </article>
+
+          <article class="difference-card spotlight-card">
+            <span class="difference-card__number">D</span>
+            <h3>Clareza para decisão</h3>
+            <p>Dados complexos são traduzidos em painéis mais rápidos de entender e mais fáceis de usar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" id="contato">
+      <div class="container">
+        <div class="section-divider reveal-divider" aria-hidden="true"></div>
+        <div class="cta-panel reveal spotlight-card">
+          <span class="eyebrow">Contato / CTA</span>
+          <h2>Vamos criar um sistema que faça a sua empresa parecer ainda mais forte.</h2>
+          <p>
+            Se a sua operação precisa de um software mais claro, mais inteligente e mais sofisticado,
+            a WR Solution pode transformar esse desafio em uma plataforma real, elegante e funcional.
+          </p>
+
+          <div class="cta-panel__actions">
+            <a
+              class="btn btn--primary"
+              href="https://wa.me/5515992587986?text=Olá,%20tenho%20interesse%20nos%20sistemas%20da%20WR%20Solution%20e%20gostaria%20de%20mais%20informações."
+              target="_blank"
+              rel="noreferrer"
+            >
+              Falar no WhatsApp
+            </a>
+            <a class="btn btn--secondary" href="mailto:wender.lopesxs@gmail.com">Enviar e-mail</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" data-footer-stage>
+    <div class="site-footer__aurora" aria-hidden="true"></div>
+    <div class="site-footer__grid" aria-hidden="true"></div>
+    <div class="container">
+      <div class="footer-card footer-card--cinematic reveal spotlight-card" data-footer-card>
+        <div class="footer-grid" data-footer-links>
+          <div class="footer-block">
+            <span class="eyebrow">WR Solution</span>
+            <h3>Tecnologia sob medida com estética de produto premium.</h3>
+            <p>Sistemas, dashboards, automações e integrações pensados para empresas que exigem alto nível.</p>
+          </div>
+
+          <div class="footer-block">
+            <h4>Navegação</h4>
+            <div class="footer-links">
+              <a href="#sobre">Sobre</a>
+              <a href="#projetos">Projetos</a>
+              <a href="#tecnologias">Tecnologias</a>
+              <a href="#diferenciais">Diferenciais</a>
+              <a href="#contato">Contato</a>
+            </div>
+          </div>
+
+          <div class="footer-block">
+            <h4>Contato</h4>
+            <div class="footer-links">
+              <a href="mailto:wender.lopesxs@gmail.com">wender.lopesxs@gmail.com</a>
+              <a href="https://wa.me/5515992587986?text=Olá,%20tenho%20interesse%20nos%20sistemas%20da%20WR%20Solution%20e%20gostaria%20de%20mais%20informações." target="_blank" rel="noreferrer">
+                WhatsApp comercial
+              </a>
+              <span>Wender Lopes</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-card__bottom">© 2026 WR Solution. Todos os direitos reservados.</div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização de imagem">
+    <div id="lb-backdrop"></div>
+    <button id="lb-close" aria-label="Fechar visualização">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 6 18 18M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+    </button>
+    <img id="lb-img" alt="" />
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
