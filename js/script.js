@@ -157,7 +157,7 @@ function initCustomCursor() {
     isInteractive: false
   };
 
-  const interactiveSelector = "a, button, [data-lightbox], .feature-card, .project-card, .difference-card, .tech-pill";
+  const interactiveSelector = "a, button, [data-lightbox], .feature-card, .project-card, .difference-card";
 
   const setInteractive = (value) => {
     state.isInteractive = value;
@@ -604,10 +604,10 @@ function initAnimations() {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  gsap.set(".reveal", { opacity: 0.25, y: 24 });
-  gsap.set(".reveal-media-right", { opacity: 0.25, x: 24 });
-  gsap.set(".reveal-media-left", { opacity: 0.25, x: -24 });
-  gsap.set("[data-stagger-group] > *", { opacity: 0.25, y: 24 });
+  gsap.set(".reveal", { opacity: 0, y: 24 });
+  gsap.set(".reveal-media-right", { opacity: 0, x: 24 });
+  gsap.set(".reveal-media-left", { opacity: 0, x: -24 });
+  gsap.set("[data-stagger-group] > *", { opacity: 0, y: 24 });
   gsap.set(".section-divider", { scaleX: 0 });
 
   // HERO

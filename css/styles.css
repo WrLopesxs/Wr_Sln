@@ -420,13 +420,20 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 0 24px;
+  min-height: 42px;
+  padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid transparent;
+  border: 1px solid color-mix(in srgb, var(--text-primary) 8%, transparent);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  box-shadow:
+    0 10px 28px -14px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text-primary);
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+  transition: transform 0.35s ease, border-color 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
   position: relative;
   overflow: hidden;
 }
@@ -439,15 +446,14 @@ button {
 }
 
 .btn--primary {
-  color: #ffffff;
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-  box-shadow: 0 18px 36px rgba(58, 184, 255, 0.18);
+  color: var(--text-primary);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
 }
 
 .btn--secondary {
   color: var(--text-primary);
-  background: color-mix(in srgb, var(--bg-card-strong) 84%, transparent);
-  border-color: var(--border);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border-color: color-mix(in srgb, var(--text-primary) 8%, transparent);
 }
 
 .btn--block {
@@ -528,6 +534,8 @@ button {
 .tag {
   font-family: "JetBrains Mono", monospace;
   color: var(--text-primary);
+  justify-content: center;
+  text-align: center;
 }
 
 .loading-screen {
@@ -708,15 +716,7 @@ button {
   --border-size: calc(var(--border, 2) * 1px);
   --spotlight-size: calc(var(--size, 150) * 1px);
   --hue: calc(var(--base) + (var(--xp, 0.5) * var(--spread, 0)));
-  background-image:
-    radial-gradient(
-      var(--spotlight-size) var(--spotlight-size) at
-      calc(var(--x, 0) * 1px)
-      calc(var(--y, 0) * 1px),
-      hsl(var(--hue, 210) 100% 70% / 0.12),
-      transparent 72%
-    ),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
   background-color: var(--backdrop, transparent);
   background-size:
     calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size))),
@@ -755,7 +755,7 @@ button {
   mask: linear-gradient(transparent, transparent), linear-gradient(white, white);
   mask-clip: padding-box, border-box;
   mask-composite: intersect;
-  opacity: 0.9;
+  opacity: 0;
 }
 
 .spotlight-card__glow {
@@ -769,7 +769,7 @@ button {
     transparent 100%
   );
   filter: blur(18px);
-  opacity: 0.65;
+  opacity: 0;
 }
 
 .hero-dash::before,
@@ -797,8 +797,7 @@ button {
 .feature-card::after,
 .project-card::after,
 .difference-card::after,
-.btn::after,
-.tech-pill::after {
+.btn::after {
   content: "";
   position: absolute;
   inset: -120% auto auto -20%;
@@ -917,6 +916,14 @@ button {
   width: 260px;
   padding: 22px;
   border-radius: 22px;
+  border-color: rgba(88, 196, 255, 0.28);
+  background:
+    radial-gradient(circle at top left, rgba(88, 196, 255, 0.18), transparent 48%),
+    radial-gradient(circle at bottom right, rgba(109, 241, 216, 0.16), transparent 44%),
+    linear-gradient(155deg, rgba(13, 25, 49, 0.92), rgba(10, 18, 34, 0.88));
+  box-shadow:
+    0 22px 50px rgba(4, 10, 22, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transform: translateZ(40px);
   animation: dash-idle-side 7s ease-in-out infinite alternate;
 }
@@ -927,6 +934,15 @@ button {
   bottom: 36px;
   padding: 20px 22px;
   border-radius: 18px;
+  border-color: rgba(88, 196, 255, 0.24);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(58, 184, 255, 0.18), transparent 34%),
+    radial-gradient(circle at 82% 78%, rgba(138, 125, 255, 0.16), transparent 36%),
+    linear-gradient(145deg, rgba(247, 251, 255, 0.96), rgba(226, 237, 255, 0.9));
+  box-shadow:
+    0 20px 48px rgba(10, 18, 32, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.64);
+  color: #10203d;
   animation: dash-idle-float 6s ease-in-out infinite alternate;
 }
 
@@ -935,6 +951,7 @@ button {
   margin-top: 8px;
   font-size: 1.06rem;
   letter-spacing: -0.03em;
+  color: #10203d;
 }
 
 .hero-metric-list {
@@ -950,9 +967,19 @@ button {
   gap: 16px;
   padding: 12px 14px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  color: var(--text-secondary);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(88, 196, 255, 0.08));
+  border: 1px solid rgba(134, 210, 255, 0.14);
+  color: rgba(232, 242, 255, 0.82);
   font-size: 14px;
+}
+
+.hero-dash--side .section-label,
+.hero-dash--side .hero-metric-list strong {
+  color: #eaf4ff;
+}
+
+.hero-dash--floating .section-label {
+  color: rgba(16, 32, 61, 0.7);
 }
 
 .hero-metric-list strong,
@@ -993,11 +1020,16 @@ button {
 
 .feature-card:hover,
 .project-card:hover,
-.difference-card:hover,
-.tech-pill:hover {
+.difference-card:hover {
   transform: translateY(-4px);
   border-color: var(--border-hover);
   box-shadow: var(--shadow-glow);
+}
+
+.tech-pill:hover {
+  transform: none;
+  border-color: var(--border);
+  box-shadow: none;
 }
 
 .feature-card {
@@ -1038,14 +1070,15 @@ button {
 
 .case-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-  gap: 34px;
-  align-items: center;
+  grid-template-columns: minmax(320px, 0.92fr) minmax(420px, 1.08fr);
+  gap: clamp(24px, 3vw, 40px);
+  align-items: stretch;
 }
 
 .case-copy {
   display: grid;
-  gap: 24px;
+  gap: 20px;
+  align-content: start;
 }
 
 .case-panel,
@@ -1085,9 +1118,9 @@ button {
 }
 
 .case-media {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  gap: 16px;
+  align-content: start;
 }
 
 .case-img-main,
@@ -1108,48 +1141,76 @@ button {
 }
 
 .case-img-main {
-  height: 340px;
+  height: clamp(300px, 34vw, 430px);
 }
 
 .case-img-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 
 .case-img-grid img {
-  height: 200px;
+  height: clamp(180px, 16vw, 220px);
 }
 
 .project-showcase {
+  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: 36px;
+  gap: 28px;
+  margin-top: 52px;
+  align-items: stretch;
 }
 
 .project-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
   overflow: hidden;
   border-radius: 26px;
   transform-style: preserve-3d;
+  min-height: 100%;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)),
+    var(--bg-card);
 }
 
 .project-card__media img {
-  height: 260px;
+  height: clamp(220px, 18vw, 280px);
 }
 
 .project-card__body {
-  padding: 24px;
+  padding: 26px 24px 28px;
   display: grid;
-  gap: 16px;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 14px;
+  align-content: start;
 }
 
 .project-card__eyebrow {
   color: var(--text-secondary);
 }
 
+.project-card__body h3 {
+  margin: 0;
+  font-size: clamp(28px, 2.2vw, 40px);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.project-card__body p {
+  margin: 0;
+  max-width: 34ch;
+}
+
+.project-card .tag-row {
+  margin-top: 10px;
+}
+
 .tech-stage {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 34px;
+  gap: 0;
   align-items: start;
 }
 
@@ -1191,13 +1252,13 @@ button {
   font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  cursor: pointer;
+  cursor: default;
   flex-shrink: 0;
 }
 
 .tech-panel {
   width: min(100%, 540px);
-  margin-left: auto;
+  margin-inline: auto;
   margin-top: 6px;
 }
 
@@ -1233,8 +1294,14 @@ button {
 
 .site-footer {
   position: relative;
-  padding: 44px 0 56px;
+  padding: 0;
   overflow: hidden;
+}
+
+.site-footer > .container {
+  width: 100%;
+  max-width: none;
+  padding-inline: 0;
 }
 
 .site-footer__aurora,
@@ -1276,7 +1343,9 @@ button {
 }
 
 .footer-card--cinematic {
+  width: 100%;
   padding: 44px 34px 26px;
+  border-radius: 0;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
     color-mix(in srgb, var(--bg-primary) 58%, transparent);
@@ -1494,7 +1563,7 @@ button {
 .reveal-media-right,
 .reveal-media-left,
 .reveal-divider {
-  opacity: 0.25;
+  opacity: 0;
 }
 
 .reveal {
