@@ -1850,6 +1850,7 @@ html.mobile-optimized .paper-shader-bg__grid {
 
 html.mobile-optimized .spotlight-card {
   background-attachment: scroll;
+  touch-action: pan-y;
 }
 
 html.mobile-optimized .spotlight-card__border,
@@ -1897,4 +1898,153 @@ html.mobile-optimized .site-footer__aurora {
 
 html.mobile-optimized .loading-screen {
   display: none;
+}
+
+html.mobile-optimized body,
+html.mobile-optimized main,
+html.mobile-optimized section,
+html.mobile-optimized .section-shell,
+html.mobile-optimized .hero,
+html.mobile-optimized .hero__content,
+html.mobile-optimized .hero__visual,
+html.mobile-optimized .case-layout,
+html.mobile-optimized .project-showcase,
+html.mobile-optimized .feature-grid,
+html.mobile-optimized .difference-grid,
+html.mobile-optimized .tech-stage,
+html.mobile-optimized .footer-grid {
+  touch-action: pan-y;
+}
+
+html.mobile-optimized .hero-dash,
+html.mobile-optimized .feature-card,
+html.mobile-optimized .project-card,
+html.mobile-optimized .difference-card,
+html.mobile-optimized .case-panel,
+html.mobile-optimized .tech-panel,
+html.mobile-optimized .cta-panel,
+html.mobile-optimized .footer-card,
+html.mobile-optimized .stat-card {
+  transform: none !important;
+}
+
+html.mobile-optimized .hero__visual [data-parallax-layer] {
+  transform: none !important;
+}
+
+html.mobile-optimized .tech-pill,
+html.mobile-optimized .footer-links a,
+html.mobile-optimized .footer-links span,
+html.mobile-optimized .btn,
+html.mobile-optimized .theme-toggle,
+html.mobile-optimized .menu-toggle,
+html.mobile-optimized .menu-close {
+  touch-action: manipulation;
+}
+
+@media (max-width: 860px) {
+  html.mobile-optimized .section-shell {
+    padding: 72px 0;
+  }
+
+  html.mobile-optimized .hero {
+    padding: 116px 0 68px;
+  }
+
+  html.mobile-optimized .hero__grid {
+    gap: 28px;
+  }
+
+  html.mobile-optimized .hero__content,
+  html.mobile-optimized .case-copy,
+  html.mobile-optimized .tech-stage {
+    gap: 18px;
+  }
+
+  html.mobile-optimized .hero__proof {
+    gap: 8px;
+  }
+
+  html.mobile-optimized .hero__proof span,
+  html.mobile-optimized .tag,
+  html.mobile-optimized .trust-pill {
+    font-size: 11px;
+  }
+
+  html.mobile-optimized .project-showcase,
+  html.mobile-optimized .feature-grid,
+  html.mobile-optimized .difference-grid,
+  html.mobile-optimized .stats-grid {
+    gap: 14px;
+  }
+
+  html.mobile-optimized .tech-marquee {
+    padding-block: 8px;
+  }
+
+  html.mobile-optimized .tech-panel {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  html.mobile-optimized :root {
+    --container: min(100vw - 20px, 100%);
+  }
+
+  html.mobile-optimized .hero__title {
+    font-size: clamp(34px, 11vw, 48px);
+    line-height: 0.98;
+  }
+
+  html.mobile-optimized .hero__subtitle,
+  html.mobile-optimized .section-head p,
+  html.mobile-optimized .case-panel p,
+  html.mobile-optimized .project-card__body p,
+  html.mobile-optimized .tech-panel p,
+  html.mobile-optimized .difference-card p,
+  html.mobile-optimized .cta-panel p,
+  html.mobile-optimized .footer-card p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  html.mobile-optimized .section-head {
+    margin-bottom: 34px;
+  }
+
+  html.mobile-optimized .section-divider {
+    margin-bottom: 34px;
+  }
+
+  html.mobile-optimized .hero-dash,
+  html.mobile-optimized .feature-card,
+  html.mobile-optimized .case-panel,
+  html.mobile-optimized .project-card,
+  html.mobile-optimized .tech-panel,
+  html.mobile-optimized .difference-card,
+  html.mobile-optimized .cta-panel,
+  html.mobile-optimized .footer-card,
+  html.mobile-optimized .stat-card {
+    border-radius: 20px;
+  }
+
+  html.mobile-optimized .hero-dash--main img,
+  html.mobile-optimized .case-img-main {
+    height: 220px;
+  }
+
+  html.mobile-optimized .case-img-grid img,
+  html.mobile-optimized .project-card__media img {
+    height: 170px;
+  }
+
+  html.mobile-optimized .mobile-menu__links a {
+    font-size: 1.1rem;
+    padding: 16px 18px;
+  }
+
+  html.mobile-optimized .footer-grid {
+    gap: 16px;
+  }
 }
