@@ -1827,6 +1827,39 @@ button {
   .cursor-shell {
     display: none;
   }
+
+  .spotlight-card,
+  .hero-dash,
+  .feature-card,
+  .project-card,
+  .difference-card,
+  .case-panel,
+  .tech-panel,
+  .cta-panel,
+  .footer-card,
+  .stat-card,
+  .hero__visual,
+  .case-layout,
+  .project-showcase,
+  .feature-grid,
+  .difference-grid,
+  .tech-stage,
+  .footer-grid,
+  .tech-marquee,
+  .tech-marquee__track,
+  .spotlight-card * {
+    touch-action: pan-y;
+  }
+
+  a,
+  button,
+  .btn,
+  .tech-pill,
+  .theme-toggle,
+  .menu-toggle,
+  .menu-close {
+    touch-action: manipulation;
+  }
 }
 
 html.mobile-optimized {

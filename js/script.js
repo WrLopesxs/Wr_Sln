@@ -6,8 +6,9 @@ const coarsePointerQuery = window.matchMedia("(hover: none), (pointer: coarse)")
 function isPhoneDevice() {
   const ua = navigator.userAgent || navigator.vendor || "";
   const hasMobileUA = /Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(ua);
+  const hasTouchPoints = (navigator.maxTouchPoints || 0) > 0;
   const narrowViewport = Math.min(window.innerWidth, window.innerHeight) <= 900;
-  return hasMobileUA || (coarsePointerQuery.matches && narrowViewport) || mobileQuery.matches;
+  return hasMobileUA || (hasTouchPoints && narrowViewport) || (coarsePointerQuery.matches && narrowViewport) || mobileQuery.matches;
 }
 
 function isMobileOptimizedMode() {
@@ -16,6 +17,14 @@ function isMobileOptimizedMode() {
 
 function applyDeviceOptimizationMode() {
   html.classList.toggle("mobile-optimized", isPhoneDevice());
+}
+
+function initDeviceOptimizationWatchers() {
+  const apply = () => applyDeviceOptimizationMode();
+  mobileQuery.addEventListener?.("change", apply);
+  coarsePointerQuery.addEventListener?.("change", apply);
+  window.addEventListener("orientationchange", apply, { passive: true });
+  window.addEventListener("resize", apply, { passive: true });
 }
 
 // THEME
@@ -128,8 +137,6 @@ function initHeader() {
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
   window.addEventListener("resize", updateHeader);
-  mobileQuery.addEventListener?.("change", applyDeviceOptimizationMode);
-  coarsePointerQuery.addEventListener?.("change", applyDeviceOptimizationMode);
 }
 
 // CURSOR
@@ -716,6 +723,7 @@ function initAnimations() {
 // APP
 function initApp() {
   applyDeviceOptimizationMode();
+  initDeviceOptimizationWatchers();
   splitWords("hero");
   initLoader();
   initThemeToggle();
