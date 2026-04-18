@@ -575,7 +575,7 @@ button {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 140;
+  z-index: 10001;
 }
 
 .cursor-shell__outer,
@@ -1587,10 +1587,10 @@ button {
   backdrop-filter: blur(8px);
 }
 
+#lb-prev,
+#lb-next,
 #lb-close {
   position: absolute;
-  top: 24px;
-  right: 24px;
   z-index: 2;
   width: 48px;
   height: 48px;
@@ -1599,8 +1599,46 @@ button {
   background: rgba(255, 255, 255, 0.04);
   color: #ffffff;
   cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
+#lb-prev,
+#lb-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#lb-prev {
+  left: 24px;
+}
+
+#lb-next {
+  right: 24px;
+}
+
+#lb-close {
+  top: 24px;
+  right: 24px;
+}
+
+#lb-prev:hover,
+#lb-prev:focus-visible,
+#lb-next:hover,
+#lb-next:focus-visible,
+#lb-close:hover,
+#lb-close:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.24);
+  transform: translateY(-50%) scale(1.04);
+}
+
+#lb-close:hover,
+#lb-close:focus-visible {
+  transform: scale(1.04);
+}
+
+#lb-prev svg,
+#lb-next svg,
 #lb-close svg {
   width: 20px;
   height: 20px;
@@ -1614,6 +1652,44 @@ button {
   object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+}
+
+#lb-prev[hidden],
+#lb-next[hidden] {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  #lightbox {
+    padding: 16px;
+  }
+
+  #lb-prev,
+  #lb-next {
+    top: auto;
+    bottom: 18px;
+    transform: none;
+  }
+
+  #lb-prev {
+    left: 16px;
+  }
+
+  #lb-next {
+    right: 16px;
+  }
+
+  #lb-prev:hover,
+  #lb-prev:focus-visible,
+  #lb-next:hover,
+  #lb-next:focus-visible {
+    transform: scale(1.04);
+  }
+
+  #lb-img {
+    max-width: 100%;
+    max-height: 80vh;
+  }
 }
 
 /* Utilities */
