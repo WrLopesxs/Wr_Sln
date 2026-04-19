@@ -2,6 +2,11 @@ const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)
 const html = document.documentElement;
 const mobileQuery = window.matchMedia("(max-width: 860px)");
 const coarsePointerQuery = window.matchMedia("(hover: none), (pointer: coarse)");
+const PERFORMANCE_STORAGE_KEY = "wr-performance-mode";
+const lowModeStatus = {
+  active: false,
+  reason: "default"
+};
 
 function resetScrollToTop() {
   window.scrollTo(0, 0);
@@ -33,16 +38,145 @@ function isMobileOptimizedMode() {
   return html.classList.contains("mobile-optimized");
 }
 
+function isLowPerformanceMode() {
+  return html.classList.contains("low-performance");
+}
+
+function isOptimizedMode() {
+  return isMobileOptimizedMode() || isLowPerformanceMode();
+}
+
+function getStoredPerformancePreference() {
+  const stored = localStorage.getItem(PERFORMANCE_STORAGE_KEY);
+  return stored === "low" || stored === "normal" ? stored : "auto";
+}
+
+function detectLowPerformanceEnvironment() {
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const deviceMemory = Number(navigator.deviceMemory || 0);
+  const hardwareConcurrency = Number(navigator.hardwareConcurrency || 0);
+  const viewportArea = window.innerWidth * window.innerHeight;
+  let score = 0;
+  const reasons = [];
+
+  if (connection?.saveData) {
+    score += 3;
+    reasons.push("save-data");
+  }
+
+  if (connection?.effectiveType === "slow-2g" || connection?.effectiveType === "2g") {
+    score += 3;
+    reasons.push(connection.effectiveType);
+  } else if (connection?.effectiveType === "3g") {
+    score += 1;
+    reasons.push("3g");
+  }
+
+  if (deviceMemory > 0 && deviceMemory <= 2) {
+    score += 3;
+    reasons.push("ram<=2gb");
+  } else if (deviceMemory > 0 && deviceMemory <= 4) {
+    score += 2;
+    reasons.push("ram<=4gb");
+  }
+
+  if (hardwareConcurrency > 0 && hardwareConcurrency <= 2) {
+    score += 3;
+    reasons.push("cpu<=2-threads");
+  } else if (hardwareConcurrency > 0 && hardwareConcurrency <= 4) {
+    score += 2;
+    reasons.push("cpu<=4-threads");
+  }
+
+  if (viewportArea <= 1280 * 720 && hardwareConcurrency > 0 && hardwareConcurrency <= 4) {
+    score += 1;
+    reasons.push("small-viewport");
+  }
+
+  const active = score >= 4 || deviceMemory === 1 || hardwareConcurrency === 1;
+
+  return {
+    active,
+    reason: reasons[0] || "auto"
+  };
+}
+
+function updatePerformanceToggleUI() {
+  const isFastMode = isOptimizedMode();
+  const labels = document.querySelectorAll("[data-performance-label]");
+  const toggles = document.querySelectorAll("[data-performance-toggle]");
+  const manualPreference = getStoredPerformancePreference();
+  const reason = html.dataset.performanceReason || "manual";
+
+  labels.forEach((label) => {
+    if (manualPreference === "auto" && lowModeStatus.active) {
+      label.textContent = "Modo rapido (auto)";
+      return;
+    }
+
+    label.textContent = isFastMode ? "Modo rapido" : "Modo normal";
+  });
+
+  toggles.forEach((toggle) => {
+    toggle.setAttribute("aria-pressed", String(isFastMode));
+    toggle.classList.toggle("is-fast", isFastMode);
+    toggle.title = isFastMode
+      ? `Fast mode ativo${reason ? `: ${reason}` : ""}`
+      : "Modo normal ativo";
+  });
+}
+
+function applyLowPerformanceMode() {
+  const preference = getStoredPerformancePreference();
+
+  lowModeStatus.active = false;
+  lowModeStatus.reason = "default";
+
+  if (preference === "low") {
+    lowModeStatus.active = true;
+    lowModeStatus.reason = "manual-fast";
+  } else if (preference === "normal") {
+    lowModeStatus.active = false;
+    lowModeStatus.reason = "manual-normal";
+  } else if (prefersReducedMotion) {
+    lowModeStatus.active = true;
+    lowModeStatus.reason = "reduced-motion";
+  } else {
+    const assessment = detectLowPerformanceEnvironment();
+    lowModeStatus.active = assessment.active;
+    lowModeStatus.reason = assessment.reason;
+  }
+
+  html.classList.toggle("low-performance", lowModeStatus.active);
+  html.dataset.performanceMode = isOptimizedMode() ? "low" : "standard";
+  html.dataset.performanceReason = lowModeStatus.reason;
+  updatePerformanceToggleUI();
+}
+
 function applyDeviceOptimizationMode() {
   html.classList.toggle("mobile-optimized", isPhoneDevice());
+  applyLowPerformanceMode();
 }
 
 function initDeviceOptimizationWatchers() {
   const apply = () => applyDeviceOptimizationMode();
   mobileQuery.addEventListener?.("change", apply);
   coarsePointerQuery.addEventListener?.("change", apply);
+  navigator.connection?.addEventListener?.("change", apply);
   window.addEventListener("orientationchange", apply, { passive: true });
   window.addEventListener("resize", apply, { passive: true });
+}
+
+function initPerformanceToggle() {
+  document.querySelectorAll("[data-performance-toggle]").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const nextPreference = isOptimizedMode() ? "normal" : "low";
+      localStorage.setItem(PERFORMANCE_STORAGE_KEY, nextPreference);
+      applyDeviceOptimizationMode();
+    });
+  });
+
+  updatePerformanceToggleUI();
 }
 
 function initViewportRefresh() {
@@ -51,7 +185,7 @@ function initViewportRefresh() {
   window.addEventListener("resize", () => {
     window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(() => {
-      if (window.ScrollTrigger && !prefersReducedMotion && !isMobileOptimizedMode()) {
+      if (window.ScrollTrigger && !prefersReducedMotion && !isOptimizedMode()) {
         window.ScrollTrigger.refresh();
       }
     }, 160);
@@ -108,7 +242,7 @@ function initThemeToggle() {
     html.classList.add("theme-transitioning");
     applyTheme(nextTheme);
 
-    if (window.gsap && !isMobileOptimizedMode()) {
+    if (window.gsap && !isOptimizedMode()) {
       gsap.fromTo(icon, { rotation: 0 }, { rotation: 360, duration: 0.5, ease: "power2.inOut" });
     }
 
@@ -123,7 +257,7 @@ function initLoader() {
   const loader = document.querySelector("[data-loader]");
   if (!loader) return;
 
-  if (!window.gsap || prefersReducedMotion || isMobileOptimizedMode()) {
+  if (!window.gsap || prefersReducedMotion || isOptimizedMode()) {
     loader.remove();
     window.ScrollTrigger?.refresh();
     return;
@@ -268,7 +402,7 @@ function initMobileMenu() {
 
 // NAV HEADER
 function initNavHeader() {
-  if (isMobileOptimizedMode()) return;
+  if (isOptimizedMode()) return;
 
   const nav = document.querySelector("[data-nav-header]");
   const cursor = document.querySelector("[data-nav-cursor]");
@@ -306,7 +440,7 @@ function initPaperShaderBackground() {
   const root = document.querySelector("[data-paper-shader]");
   if (!root) return;
 
-  if (isMobileOptimizedMode()) {
+  if (isOptimizedMode()) {
     root.style.setProperty("--shader-x", "50%");
     root.style.setProperty("--shader-y", "30%");
     root.style.setProperty("--shader-time", "0.35");
@@ -346,7 +480,7 @@ function initPaperShaderBackground() {
 
 // HERO TILT
 function initTiltCards() {
-  if (prefersReducedMotion || isMobileOptimizedMode()) return;
+  if (prefersReducedMotion || isOptimizedMode()) return;
 
   document.querySelectorAll("[data-tilt-card]").forEach((card) => {
     const onMove = (event) => {
@@ -408,7 +542,7 @@ function initSpotlightCards() {
 
     card.style.setProperty("--base", String(palette.base));
     card.style.setProperty("--spread", String(palette.spread));
-    if (isMobileOptimizedMode()) {
+    if (isOptimizedMode()) {
       card.style.setProperty("--x", String(window.innerWidth * 0.5));
       card.style.setProperty("--y", String(window.innerHeight * 0.3));
       card.style.setProperty("--xp", "0.5");
@@ -416,7 +550,7 @@ function initSpotlightCards() {
     }
   });
 
-  if (isMobileOptimizedMode()) return;
+  if (isOptimizedMode()) return;
 
   const syncPointer = (event) => {
     const x = event.clientX;
@@ -437,7 +571,7 @@ function initSpotlightCards() {
 
 // PARALLAX
 function initAdvancedParallax() {
-  if (prefersReducedMotion || isMobileOptimizedMode()) return;
+  if (prefersReducedMotion || isOptimizedMode()) return;
 
   const layers = [...document.querySelectorAll("[data-parallax-layer]")];
   if (!layers.length) return;
@@ -589,7 +723,7 @@ function initCounters() {
   const counters = document.querySelectorAll("[data-counter]");
   if (!counters.length) return;
 
-  if (!window.gsap || !window.ScrollTrigger || prefersReducedMotion || isMobileOptimizedMode()) {
+  if (!window.gsap || !window.ScrollTrigger || prefersReducedMotion || isOptimizedMode()) {
     counters.forEach((counter) => {
       const suffix = counter.dataset.suffix || "";
       counter.textContent = `${counter.dataset.target}${suffix}`;
@@ -629,7 +763,7 @@ function initFooterMotion() {
   const card = document.querySelector("[data-footer-card]");
   const links = document.querySelectorAll("[data-footer-links] .footer-block, [data-footer-bottom]");
 
-  if (!footer || !card || !window.gsap || !window.ScrollTrigger || prefersReducedMotion || isMobileOptimizedMode()) return;
+  if (!footer || !card || !window.gsap || !window.ScrollTrigger || prefersReducedMotion || isOptimizedMode()) return;
 
   gsap.fromTo(
     card,
@@ -685,7 +819,7 @@ function initAnimations() {
     return;
   }
 
-  if (prefersReducedMotion || isMobileOptimizedMode()) {
+  if (prefersReducedMotion || isOptimizedMode()) {
     showStaticState();
     return;
   }
@@ -814,6 +948,7 @@ function initApp() {
   initViewportRefresh();
   splitWords("hero");
   initLoader();
+  initPerformanceToggle();
   initThemeToggle();
   initHeader();
   initPaperShaderBackground();

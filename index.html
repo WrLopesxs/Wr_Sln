@@ -91,6 +91,15 @@
 
         <div class="site-nav__actions">
           <button
+            class="performance-toggle"
+            type="button"
+            aria-label="Alternar modo de desempenho"
+            aria-pressed="false"
+            data-performance-toggle
+          >
+            <span class="performance-toggle__label" data-performance-label>Modo normal</span>
+          </button>
+          <button
             class="theme-toggle"
             type="button"
             aria-label="Alternar tema"
@@ -129,6 +138,15 @@
       </div>
 
       <div class="mobile-menu__links">
+        <button
+          class="performance-toggle performance-toggle--menu"
+          type="button"
+          aria-label="Alternar modo de desempenho"
+          aria-pressed="false"
+          data-performance-toggle
+        >
+          <span class="performance-toggle__label" data-performance-label>Modo normal</span>
+        </button>
         <a href="#sobre">Sobre</a>
         <a href="#projetos">Projetos</a>
         <a href="#tecnologias">Tecnologias</a>

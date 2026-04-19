@@ -465,6 +465,7 @@ button {
   color: var(--text-primary);
 }
 
+.performance-toggle,
 .theme-toggle,
 .menu-toggle,
 .menu-close {
@@ -478,6 +479,35 @@ button {
   background: color-mix(in srgb, var(--bg-card-strong) 86%, transparent);
   color: var(--text-primary);
   cursor: pointer;
+}
+
+.performance-toggle {
+  width: auto;
+  min-width: 136px;
+  padding: 0 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.performance-toggle__label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.performance-toggle.is-fast {
+  border-color: color-mix(in srgb, var(--accent-secondary) 34%, white 8%);
+  box-shadow:
+    0 14px 30px -16px rgba(58, 184, 255, 0.46),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+}
+
+.performance-toggle--menu {
+  width: 100%;
+  min-height: 52px;
 }
 
 .theme-toggle__icon,
@@ -511,6 +541,7 @@ button {
 }
 
 .btn:hover,
+.performance-toggle:hover,
 .theme-toggle:hover,
 .menu-toggle:hover,
 .menu-close:hover {
@@ -2104,116 +2135,116 @@ button {
   }
 }
 
-html.mobile-optimized {
+:is(html.mobile-optimized, html.low-performance) {
   scroll-behavior: auto;
 }
 
-html.mobile-optimized .paper-shader-bg__orb {
+:is(html.mobile-optimized, html.low-performance) .paper-shader-bg__orb {
   filter: blur(52px);
   opacity: 0.18;
   animation: none !important;
 }
 
-html.mobile-optimized .paper-shader-bg__mesh {
+:is(html.mobile-optimized, html.low-performance) .paper-shader-bg__mesh {
   filter: blur(12px) saturate(108%);
   transform: scale(1.03);
 }
 
-html.mobile-optimized .paper-shader-bg__grid {
+:is(html.mobile-optimized, html.low-performance) .paper-shader-bg__grid {
   opacity: 0.22;
 }
 
-html.mobile-optimized .spotlight-card {
+:is(html.mobile-optimized, html.low-performance) .spotlight-card {
   background-attachment: scroll;
   touch-action: pan-y;
 }
 
-html.mobile-optimized .spotlight-card__border,
-html.mobile-optimized .spotlight-card__glow {
+:is(html.mobile-optimized, html.low-performance) .spotlight-card__border,
+:is(html.mobile-optimized, html.low-performance) .spotlight-card__glow {
   background-attachment: scroll;
 }
 
-html.mobile-optimized .spotlight-card__glow {
+:is(html.mobile-optimized, html.low-performance) .spotlight-card__glow {
   filter: blur(10px);
   opacity: 0.42;
 }
 
-html.mobile-optimized .hero-dash,
-html.mobile-optimized .stat-card,
-html.mobile-optimized .feature-card,
-html.mobile-optimized .case-panel,
-html.mobile-optimized .project-card,
-html.mobile-optimized .tech-panel,
-html.mobile-optimized .difference-card,
-html.mobile-optimized .cta-panel,
-html.mobile-optimized .footer-card,
-html.mobile-optimized .footer-links a,
-html.mobile-optimized .footer-links span,
-html.mobile-optimized .tech-pill,
-html.mobile-optimized .mobile-menu__panel {
+:is(html.mobile-optimized, html.low-performance) .hero-dash,
+:is(html.mobile-optimized, html.low-performance) .stat-card,
+:is(html.mobile-optimized, html.low-performance) .feature-card,
+:is(html.mobile-optimized, html.low-performance) .case-panel,
+:is(html.mobile-optimized, html.low-performance) .project-card,
+:is(html.mobile-optimized, html.low-performance) .tech-panel,
+:is(html.mobile-optimized, html.low-performance) .difference-card,
+:is(html.mobile-optimized, html.low-performance) .cta-panel,
+:is(html.mobile-optimized, html.low-performance) .footer-card,
+:is(html.mobile-optimized, html.low-performance) .footer-links a,
+:is(html.mobile-optimized, html.low-performance) .footer-links span,
+:is(html.mobile-optimized, html.low-performance) .tech-pill,
+:is(html.mobile-optimized, html.low-performance) .mobile-menu__panel {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
 }
 
-html.mobile-optimized .hero-dash::after,
-html.mobile-optimized .feature-card::after,
-html.mobile-optimized .project-card::after,
-html.mobile-optimized .difference-card::after,
-html.mobile-optimized .btn::after,
-html.mobile-optimized .tech-pill::after {
+:is(html.mobile-optimized, html.low-performance) .hero-dash::after,
+:is(html.mobile-optimized, html.low-performance) .feature-card::after,
+:is(html.mobile-optimized, html.low-performance) .project-card::after,
+:is(html.mobile-optimized, html.low-performance) .difference-card::after,
+:is(html.mobile-optimized, html.low-performance) .btn::after,
+:is(html.mobile-optimized, html.low-performance) .tech-pill::after {
   display: none;
 }
 
-html.mobile-optimized .hero__aurora,
-html.mobile-optimized .hero__gridlines,
-html.mobile-optimized .site-footer__aurora {
+:is(html.mobile-optimized, html.low-performance) .hero__aurora,
+:is(html.mobile-optimized, html.low-performance) .hero__gridlines,
+:is(html.mobile-optimized, html.low-performance) .site-footer__aurora {
   animation: none !important;
 }
 
-html.mobile-optimized .loading-screen {
+:is(html.mobile-optimized, html.low-performance) .loading-screen {
   display: none;
 }
 
-html.mobile-optimized body,
-html.mobile-optimized main,
-html.mobile-optimized section,
-html.mobile-optimized .section-shell,
-html.mobile-optimized .hero,
-html.mobile-optimized .hero__content,
-html.mobile-optimized .hero__visual,
-html.mobile-optimized .case-layout,
-html.mobile-optimized .project-showcase,
-html.mobile-optimized .feature-grid,
-html.mobile-optimized .difference-grid,
-html.mobile-optimized .tech-stage,
-html.mobile-optimized .footer-grid {
+:is(html.mobile-optimized, html.low-performance) body,
+:is(html.mobile-optimized, html.low-performance) main,
+:is(html.mobile-optimized, html.low-performance) section,
+:is(html.mobile-optimized, html.low-performance) .section-shell,
+:is(html.mobile-optimized, html.low-performance) .hero,
+:is(html.mobile-optimized, html.low-performance) .hero__content,
+:is(html.mobile-optimized, html.low-performance) .hero__visual,
+:is(html.mobile-optimized, html.low-performance) .case-layout,
+:is(html.mobile-optimized, html.low-performance) .project-showcase,
+:is(html.mobile-optimized, html.low-performance) .feature-grid,
+:is(html.mobile-optimized, html.low-performance) .difference-grid,
+:is(html.mobile-optimized, html.low-performance) .tech-stage,
+:is(html.mobile-optimized, html.low-performance) .footer-grid {
   touch-action: pan-y;
 }
 
-html.mobile-optimized .hero-dash,
-html.mobile-optimized .feature-card,
-html.mobile-optimized .project-card,
-html.mobile-optimized .difference-card,
-html.mobile-optimized .case-panel,
-html.mobile-optimized .tech-panel,
-html.mobile-optimized .cta-panel,
-html.mobile-optimized .footer-card,
-html.mobile-optimized .stat-card {
+:is(html.mobile-optimized, html.low-performance) .hero-dash,
+:is(html.mobile-optimized, html.low-performance) .feature-card,
+:is(html.mobile-optimized, html.low-performance) .project-card,
+:is(html.mobile-optimized, html.low-performance) .difference-card,
+:is(html.mobile-optimized, html.low-performance) .case-panel,
+:is(html.mobile-optimized, html.low-performance) .tech-panel,
+:is(html.mobile-optimized, html.low-performance) .cta-panel,
+:is(html.mobile-optimized, html.low-performance) .footer-card,
+:is(html.mobile-optimized, html.low-performance) .stat-card {
   transform: none !important;
 }
 
-html.mobile-optimized .hero__visual [data-parallax-layer] {
+:is(html.mobile-optimized, html.low-performance) .hero__visual [data-parallax-layer] {
   transform: none !important;
 }
 
-html.mobile-optimized .tech-pill,
-html.mobile-optimized .footer-links a,
-html.mobile-optimized .footer-links span,
-html.mobile-optimized .btn,
-html.mobile-optimized .theme-toggle,
-html.mobile-optimized .menu-toggle,
-html.mobile-optimized .menu-close {
+:is(html.mobile-optimized, html.low-performance) .tech-pill,
+:is(html.mobile-optimized, html.low-performance) .footer-links a,
+:is(html.mobile-optimized, html.low-performance) .footer-links span,
+:is(html.mobile-optimized, html.low-performance) .btn,
+:is(html.mobile-optimized, html.low-performance) .theme-toggle,
+:is(html.mobile-optimized, html.low-performance) .menu-toggle,
+:is(html.mobile-optimized, html.low-performance) .menu-close {
   touch-action: manipulation;
 }
 
